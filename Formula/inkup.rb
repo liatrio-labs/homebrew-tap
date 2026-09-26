@@ -1,25 +1,25 @@
 class Inkup < Formula
   desc "The InkUp host: the server, the store, the TUI and `mcp install`"
   homepage "https://github.com/liatrio-labs/inkup"
-  version "0.2.0"
+  version "0.3.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.2.0/inkup-aarch64-apple-darwin.tar.xz"
-      sha256 "bd410e25cbf01fdaa206ce0790fab49f24cfca529205578ef8ae38f85f2d8b0c"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.3.0/inkup-aarch64-apple-darwin.tar.xz"
+      sha256 "7253c7b94ca8de55b43fd41f2cc31f0aea1cccac2d161bc4103c9824c9bf7862"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.2.0/inkup-x86_64-apple-darwin.tar.xz"
-      sha256 "33f4b1913978bdc483564f76f1deaa74e6b83c4e3d823fab58bc1dfca637e710"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.3.0/inkup-x86_64-apple-darwin.tar.xz"
+      sha256 "2351b868690b69029942054f16d95d42a04096cdc6c3db5375bffd46fb8d2527"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.2.0/inkup-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "2171023a72ea2e4bad8b59df467b7425e8e751777f8b156081041d938c8f3604"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.3.0/inkup-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "654fa4539caed69f6bf5661434c5daf79d6b08b969d1019426b37c6b7080265b"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.2.0/inkup-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "18c0f09589e9a9a7dfd982cc53627961d6ca0c5f424f282f1b1d119d962c4950"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.3.0/inkup-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "42eccb91163859ab3139fb9205b759109f89bd137f4d038cd6358e40ba3a6a9b"
     end
   end
   license "MIT"
