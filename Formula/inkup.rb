@@ -1,74 +1,52 @@
 class Inkup < Formula
-  desc "The InkUp host: the server, the store, the TUI and `mcp install`"
+  desc "Host for spoken and drawn web page reviews: server, store, TUI and MCP setup"
   homepage "https://github.com/liatrio-labs/inkup"
-  version "0.5.0"
-  if OS.mac?
-    if Hardware::CPU.arm?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.5.0/inkup-aarch64-apple-darwin.tar.xz"
-      sha256 "a729e9d43b49e9ce78267b776d90f90b9ad32bbc520509ce43efd43a2332e9a1"
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.5.0/inkup-x86_64-apple-darwin.tar.xz"
-      sha256 "4ad144b5ecdea506ba021f4bb4ef7cf3823d2f16eefd87b3a926fa97570e466b"
-    end
-  end
-  if OS.linux?
-    if Hardware::CPU.arm?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.5.0/inkup-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "a5ae6ae4e6b30f08696fc918d47453afd61114c017702bb3834808ee38ff6255"
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.5.0/inkup-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "0786d0a834b2ac60e474a45d983d2d29b7cbf4dc30bbf2329fee1455d1088095"
-    end
-  end
+  version "0.6.0"
   license "MIT"
 
-  BINARY_ALIASES = {
-    "aarch64-apple-darwin":      {},
-    "aarch64-unknown-linux-gnu": {},
-    "x86_64-apple-darwin":       {},
-    "x86_64-pc-windows-gnu":     {},
-    "x86_64-unknown-linux-gnu":  {},
-  }.freeze
-
-  def target_triple
-    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-    os = OS.mac? ? "apple-darwin" : "unknown-linux-gnu"
-
-    "#{cpu}-#{os}"
+  # The repo also releases the browser extensions, on inkup-chrome-v* and inkup-firefox-v* tags.
+  livecheck do
+    url :stable
+    regex(/^inkup-v(\d+(?:\.\d+)+)$/i)
+    strategy :github_releases
   end
 
-  def install_binary_aliases!
-    BINARY_ALIASES[target_triple.to_sym].each do |source, dests|
-      dests.each do |dest|
-        bin.install_symlink bin/source.to_s => dest
-      end
+  # Built from the release's own archives (scripts/formula.ts), so installing never compiles and needs no Xcode.
+  bottle do
+    root_url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.6.0"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "ab94d53eba8cb71a74459552e724f7146895fa80768e5ff78f5fb2351884cd0d"
+    sha256 cellar: :any_skip_relocation, big_sur:       "ea18fc831833fcc6b942f52258f75f17f1b79bbfe30c928a2be968a0cdc98ed8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "08364ba8f85d3ba633bf52842b7050c6a07cd869a816c0a6ef74753d538272e2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "be9dce889b32b6755111d7498ebc31fd4bb716b668561f57e7caed0d1e969559"
+  end
+
+  on_macos do
+    on_arm do
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.6.0/inkup-aarch64-apple-darwin.tar.xz"
+      sha256 "f408eca173146486a918580d69d03f454e4ca8a9aa71502aeec9d6204ed97626"
+    end
+    on_intel do
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.6.0/inkup-x86_64-apple-darwin.tar.xz"
+      sha256 "68c66cac933e21573068ed6e84ca6b14d4fe94561443ba3d98465114db8c05da"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.6.0/inkup-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "f0c7a3d5ef76f6d8bc4e3df47d60d042a27eb832fc75f18748e0f3e4203c1a2c"
+    end
+    on_intel do
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.6.0/inkup-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "aa1a7ffb5ee5eaa9ccea6988ce4a1b9d18c5323232a4e6ece2670ac89f12ad09"
     end
   end
 
   def install
-    if OS.mac? && Hardware::CPU.arm?
-      bin.install "inkup"
-    end
-    if OS.mac? && Hardware::CPU.intel?
-      bin.install "inkup"
-    end
-    if OS.linux? && Hardware::CPU.arm?
-      bin.install "inkup"
-    end
-    if OS.linux? && Hardware::CPU.intel?
-      bin.install "inkup"
-    end
+    bin.install "inkup"
+  end
 
-    install_binary_aliases!
-
-    # Homebrew will automatically install these, so we don't need to do that
-    doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
-    leftover_contents = Dir["*"] - doc_files
-
-    # Install any leftover files in pkgshare; these are probably config or
-    # sample files.
-    pkgshare.install(*leftover_contents) unless leftover_contents.empty?
+  test do
+    assert_equal "inkup #{version}", shell_output("#{bin}/inkup --version").strip
   end
 end
