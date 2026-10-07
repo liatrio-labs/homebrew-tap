@@ -1,6 +1,6 @@
 cask "inkup" do
-  version "0.12.0"
-  sha256 "993acfa8dd1138f8476b604db179b249e2d2961f6fc8ed4ae8c7107ed2c2cf5b"
+  version "0.13.0"
+  sha256 "d2d277f040471e1ca64a5b4a135f4cde2a46e712d111b27c4d69bcc07d992c11"
 
   url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v#{version}/InkUp_#{version}_universal.dmg"
   name "InkUp"
