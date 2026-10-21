@@ -1,7 +1,7 @@
 class Inkup < Formula
   desc "Host for spoken and drawn web page reviews: server, store, TUI and MCP setup"
   homepage "https://github.com/liatrio-labs/inkup"
-  version "0.15.0"
+  version "0.17.0"
   license "MIT"
 
   # The repo also releases the browser extensions, on inkup-chrome-v* and inkup-firefox-v* tags.
@@ -13,32 +13,32 @@ class Inkup < Formula
 
   # Built from the release's own archives (scripts/formula.ts), so installing never compiles and needs no Xcode.
   bottle do
-    root_url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.15.0"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "d42cea572d5d14d5bbc61c54d938d3becdfc56c2ad18f5c539877252a810a31f"
-    sha256 cellar: :any_skip_relocation, big_sur:       "cc2fe7f0be5dc537bd60b3f3d4efe70584b6725557a820de0c00019c0b3d4754"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "c02163b07c77210ab0b2f572ecd078d99fc786fe2f21d56ed655c0927f435c14"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5414a57d0a950bd39e22b3a427f4c407e9a5d4405aac5e3809ed57d721b1d241"
+    root_url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.17.0"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "1b1ce7d01774ad6019170b90f283c95d61b8e394d6a315d1b95dfe6366d93e7f"
+    sha256 cellar: :any_skip_relocation, big_sur:       "f0f6f4bb89f2087d924d121b2c4facaf2b881b61b51afba745ebae4bcdb9c149"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "3d4486fa438d4cfb3291ac2ee9a98ac7b4a411da349a53864cc5914ad908ee21"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f02b2c30c7a371226eced5dda5275a4655f2dc1bea367b8309c1bc3b414a9497"
   end
 
   on_macos do
     on_arm do
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.15.0/inkup-aarch64-apple-darwin.tar.xz"
-      sha256 "b6a51e27ee42a733ba1287a107bf02b1d29d060ef7e9bc0f3fa7f5aeccb04d97"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.17.0/inkup-aarch64-apple-darwin.tar.xz"
+      sha256 "946c2a486f9a961bb513de93fd66098fcb9f46d79f33ecf202d4890669b53b4f"
     end
     on_intel do
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.15.0/inkup-x86_64-apple-darwin.tar.xz"
-      sha256 "30233f8dad30ac468faef7d23c83c2f44b91d08376e48c34dac57165e2737f95"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.17.0/inkup-x86_64-apple-darwin.tar.xz"
+      sha256 "5981cbecba505f4b0f03bd56420b098e27c564d131667ff9faa3b813595e0396"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.15.0/inkup-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "17384eb5343acf8f2a41cabf20e854dbe4f240adcbdbc00710aca1c55016f372"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.17.0/inkup-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "435631122cb96be9dbdf1c5c5db311f02967f87b0b0701a32db217e4d2952601"
     end
     on_intel do
-      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.15.0/inkup-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "7063adda9539651294a957989d5cefd6e59cbeb2a5a5cf85ffa10c29ae14cfdd"
+      url "https://github.com/liatrio-labs/inkup/releases/download/inkup-v0.17.0/inkup-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "db3f6ee87556b158a6d41e0d4682dfca8decc740cf37b73e2c22d11d0e750500"
     end
   end
 
